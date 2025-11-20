@@ -1,0 +1,82 @@
+.grid-container {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px 16px;
+    width: 100%;
+    /* margin-right: 39px; */
+    align-content: start;
+    /* padding-right: 67px; */
+    padding-right: 24px;
+    padding-top: 36px;
+    padding-bottom: 200px;
+}
+
+
+
+
+@media (min-width: 600px) {
+    .grid-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding-right: 24px;
+    }
+}
+
+@media (min-width: 900px) {
+    .grid-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        /* padding-right: 67px; */
+        padding-right: clamp(24px, calc(24px + (43 * ((100vw - 900px) / (1920 - 900)))), 24px);
+    }
+}
+
+
+/* @media (min-width: 1200px) {
+    .grid-container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        padding-right: 24px;
+    }
+} */
+
+
+@media (min-width: 1200px) {
+
+    /* Apply only when sidebar is collapsed in any form */
+    .page.manually-collapsed .grid-container,
+    .page.semi-collapsed .grid-container,
+    .page.auto-collapsed .grid-container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        padding-right: 24px;
+    }
+}
+
+
+
+
+
+
+
+/* tailwind css breakpoint templates for media queries */
+
+@media (min-width: 640px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1536px) {}
+
+
+/* use these tailwind css breakpoint media queries here */
+
+@media (min-width: 640px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1536px) {}

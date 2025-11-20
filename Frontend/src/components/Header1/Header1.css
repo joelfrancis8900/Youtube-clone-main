@@ -1,0 +1,218 @@
+.header {
+    grid-area: header;
+    background-color: #f8f8f8;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 27px;
+    padding-right: 30px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.header-left {
+    display: flex;
+    align-items: center;
+    min-width: 169px;
+    gap: 27px;
+}
+
+.header-center {
+    flex: 0 1 658px;
+    max-width: 658px;
+    min-width: 0px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    /* margin-left: 50px; */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: 20px;
+}
+
+.profile-placeholder {
+    width: 40px;
+    /* size of the placeholder */
+    height: 40px;
+    border-radius: 50%;
+    /* makes it circular */
+    background-color: #ccc;
+    /* gray color for placeholder */
+    flex-shrink: 0;
+    /* don’t shrink below 40px */
+}
+
+.menu-button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    min-height: 13px;
+    min-width: 18px;
+    max-height: 13px;
+    max-width: 18px;
+}
+
+.header-create-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    height: 36px;
+    width: 97px;
+    border-radius: 18px;
+    border: none;
+}
+
+#plus-icon {
+    display: block;
+    height: 17px;
+    width: 17px;
+}
+
+
+
+
+#voice-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+
+}
+
+
+.bell-icon {
+    height: 20px;
+    width: 16px;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    overflow: visible;
+    display: flex;
+    /* flex: 1 1 auto;
+    justify-content: flex-end; */
+}
+
+.icon-container {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1 1 auto;
+    min-width: 0px;
+}
+
+.search-container {
+    display: none;
+}
+
+
+
+@media (min-width: 656px) {
+    .search-icon {
+        display: none;
+    }
+
+    .icon-container {
+        display: none;
+
+    }
+
+
+
+
+    .search-container {
+        display: flex;
+        align-items: center;
+        /* width: 600px; */
+        width: 100%;
+        max-width: 602px;
+        min-width: 0px;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+        overflow: hidden;
+        background: #fff;
+        /* margin: 0; */
+        margin-right: 16px;
+        /* justify-content: flex-end; */
+    }
+
+    /* when the screen size is about 642px wide and under, search input should change to just search icon. in youtube's the search input doesn't go below about 100px. */
+
+    .search-input {
+        border: none;
+        /* padding: 10px 15px; */
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 0;
+        font-size: 16px;
+        outline: none;
+        flex: 1 1 536px;
+        min-width: 0px;
+        /* max-width: 536px; */
+    }
+
+    .search-button {
+        background: #f8f8f8;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 64px;
+        /* flex: 0 0 64px; */
+        /* min-width: 64px; */
+
+    }
+
+    .search-button:hover {
+        background: #e5e5e5;
+    }
+
+    .search-button img {
+        width: 20px;
+        height: 20px;
+        fill: #606060;
+    }
+}
+
+
+/* tailwind css breakpoint templates for media queries */
+
+@media (min-width: 640px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1536px) {}
+
+
+/* use these tailwind css breakpoint media queries here */
+
+@media (min-width: 640px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1536px) {}

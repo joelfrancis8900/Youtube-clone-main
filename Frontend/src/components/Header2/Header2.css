@@ -1,0 +1,45 @@
+.header2 {
+    grid-area: header2;
+    background-color: #ddd;
+    /* height: 48px; */
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* tailwind css breakpoint templates for media queries */
+
+@media (min-width: 640px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1536px) {}
+
+
+/* use these tailwind css breakpoint media queries here */
+
+@media (min-width: 640px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1536px) {}

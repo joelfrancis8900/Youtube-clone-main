@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* from home.css */
+/* colors of header 1, 2, and sidebar etc
+
+header 1: background-color: #f8f8f8;
+header 2: background-color: #ddd;
+sidebar: background-color: #eee;
+create button: rgb(239, 239, 239)
+search button: #f8f8f8
+.profile-placeholder: #ccc;
+
+*/
+
+
+
+.page {
+    display: grid;
+    grid-template-areas:
+        "header  header"
+        "sidebar header2"
+        "sidebar main";
+    /* grid-template-columns: 307px 1fr; */
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 68px 32px 1fr;
+    min-height: 100vh;
+}
+
+
+
+
+
+
+
+
+/* all classes that aren't for any of the components go here */
+
+.page.auto-collapsed:not(.user-override) .sidebar,
+.page.manually-collapsed .sidebar {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.page.auto-collapsed:not(.user-override),
+.page.manually-collapsed {
+    grid-template-columns: 0 1fr;
+}
+
+/* Semi-collapsed (YouTube style) */
+.page.semi-collapsed .sidebar {
+    width: 96px;
+    padding: 8px;
+}
+
+.page.semi-collapsed .sidebar .label {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+@media (min-width: 1200px) {
+    .page.manually-collapsed {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        padding-right: 24px;
+    }
+}
+
+/* tailwind css breakpoint templates for media queries */
+
+@media (min-width: 640px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1536px) {}
+
+
+/* use these tailwind css breakpoint media queries here */
+
+@media (min-width: 640px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {}
+
+@media (min-width: 1280px) {}
+
+@media (min-width: 1536px) {}
