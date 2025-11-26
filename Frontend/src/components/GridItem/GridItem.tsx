@@ -1,4 +1,6 @@
 import "./GridItem.css";
+import dotIcon from "../../icons/dot-single-svgrepo-com.svg";
+
 
 interface GridItemProps {
     title: string;
@@ -28,7 +30,9 @@ function GridItem({ title, thumbnail }: GridItemProps) {
                     <div>Video Channel</div>
                     <div className="test">
                         <div className="views">Video views</div>
-                        <div className="view-date-divider"> | </div>
+                        {/* <div className="view-date-divider"> | </div> */}
+                        <div className="dot-container"><img src={dotIcon} className="dot-icon" alt="dot icon" /></div>
+
                         <div className="date">14 minutes ago</div>
                     </div>
 

@@ -40,6 +40,7 @@
 
 .test {
     display: flex;
+    /* align-items: center; */
 }
 
 .GridItem-Channel-Photo {
@@ -61,6 +62,20 @@
 
 .views {
     white-space: nowrap;
+}
+
+.dot-icon {
+    width: 3px;
+    /* Set a specific width in pixels */
+    height: 3px;
+    /* Set a specific height in pixels */
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.dot-container {
+    display: flex;
+    align-items: center;
 }
 
 /* tailwind css breakpoint templates for media queries */
