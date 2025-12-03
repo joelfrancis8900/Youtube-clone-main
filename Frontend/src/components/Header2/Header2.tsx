@@ -1,11 +1,11 @@
 
 
-import styles from "./Header2.module.css";
+import "./Header2.css";
 
 
 function Header2() {
     return (
-        <div className={styles.header2}></div>
+        <div className="header2"></div>
     );
 }
 

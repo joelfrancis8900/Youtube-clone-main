@@ -9,7 +9,7 @@ function Sidebar() {
 
 
     return (
-        <aside className="sidebar">
+        <aside className="sidebar sidebar-sidebar">
             <div>Home</div>
 
 
