@@ -35,7 +35,8 @@ search button: #f8f8f8
         "sidebar header2"
         "sidebar main";
     /* grid-template-columns: 307px 1fr; */
-    grid-template-columns: auto 1fr;
+    /* grid-template-columns: auto 1fr; */
+    grid-template-columns: minmax(0, auto) 1fr;
     grid-template-rows: 68px 32px 1fr;
     min-height: 100vh;
 }

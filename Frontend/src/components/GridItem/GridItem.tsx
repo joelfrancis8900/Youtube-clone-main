@@ -26,8 +26,8 @@ function GridItem({ title, thumbnail }: GridItemProps) {
                 <div className="GridItem-Channel-Photo"></div>
 
                 <div className="Video-details">
-                    <h3>{title}</h3>
-                    <div>Video Channel</div>
+                    <h3 className="video-title">{title}</h3>
+                    <div className="video-channel">Video Channel</div>
                     <div className="test">
                         <div className="views">Video views</div>
                         {/* <div className="view-date-divider"> | </div> */}
