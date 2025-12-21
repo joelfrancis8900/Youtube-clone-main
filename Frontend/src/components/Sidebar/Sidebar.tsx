@@ -10,7 +10,12 @@ function Sidebar() {
 
     return (
         <aside className="sidebar sidebar-sidebar">
-            <div>Home</div>
+
+
+            <div className="sidebar-content">
+                <div>Home</div>
+            </div>
+
 
 
         </aside>

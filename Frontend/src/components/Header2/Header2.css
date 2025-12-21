@@ -1,17 +1,29 @@
 .header2 {
     grid-area: header2;
-    background-color: #ddd;
+    /* background-color: #ddd; */
     /* height: 48px; */
     height: 32px;
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 16px;
+    padding-left: 26px;
+    background-color: white;
+}
+
+.header2 {
+    position: sticky;
+    /* Or 'fixed' */
+    top: 68px;
+    z-index: 1000;
+    /* Keeps it above other content */
 }
 
 
-
-
-
+.header2-div2 {
+    background: #ddd;
+}
 
 
 
