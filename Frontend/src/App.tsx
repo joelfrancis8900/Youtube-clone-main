@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import WatchPage from "./pages/WatchPage/WatchPage";
+import TestPage from "./pages/TestPage"
 import './App.css'; // Optional: page-specific styles
 
 
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/watch" element={<WatchPage />} />
+        <Route path="/TestPage" element={<TestPage />} />
       </Routes>
     </Router>
   );

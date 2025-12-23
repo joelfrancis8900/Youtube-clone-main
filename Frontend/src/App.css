@@ -39,6 +39,7 @@ search button: #f8f8f8
     grid-template-columns: minmax(0, auto) 1fr;
     grid-template-rows: 68px 32px 1fr;
     min-height: 100vh;
+
 }
 
 
@@ -54,7 +55,7 @@ search button: #f8f8f8
 .page.manually-collapsed .sidebar {
     width: 0;
     padding: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .page.auto-collapsed:not(.user-override),

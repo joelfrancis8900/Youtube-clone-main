@@ -1,4 +1,4 @@
-.sidebar-sidebar {
+.sidebar {
     grid-area: sidebar;
     background-color: #eee;
     padding: 16px;
@@ -16,11 +16,11 @@
     overflow-y: auto;
     /* Allow scrolling if content overflows */
     overscroll-behavior-y: contain;
-
+    z-index: 1001;
 }
 
 
-.sidebar-content {
+.sidebar__content {
     height: 200vh;
 }
 
