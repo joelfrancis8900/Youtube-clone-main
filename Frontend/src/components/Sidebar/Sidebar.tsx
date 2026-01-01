@@ -12,7 +12,7 @@ function Sidebar() {
         <aside className="sidebar">
 
 
-            <div className="sidebar__content">
+            <div className="sidebar--content">
                 <div>Home</div>
             </div>
 

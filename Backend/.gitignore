@@ -1,0 +1,38 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Build output
+build/
+.out/
+.tmp/
+.tmp-cache/
+
+# Env / Secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+logs/*
+debug.log
+error.log
+
+# OS crap
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+#Compiled JavaScript from TypeScript - Build output folder (do not commit)
+/dist

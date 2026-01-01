@@ -13,18 +13,21 @@
 
     /* Make sidebar take full viewport height minus top offset */
     height: calc(100vh - 68px);
-    overflow-y: auto;
+    overflow-y: hidden;
     /* Allow scrolling if content overflows */
     overscroll-behavior-y: contain;
     z-index: 1001;
 }
 
 
-.sidebar__content {
+.sidebar--content {
     height: 200vh;
 }
 
+.sidebar:hover {
+    overflow-y: auto;
 
+}
 
 /* tailwind css breakpoint templates for media queries */
 
