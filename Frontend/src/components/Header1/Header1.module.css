@@ -82,7 +82,7 @@
     border: none;
 }
 
-#plus-icon {
+.plus-icon {
     display: block;
     height: 17px;
     width: 17px;
@@ -91,7 +91,7 @@
 
 
 
-#voice-icon {
+.voice-icon {
     width: 20px;
     height: 20px;
     border-radius: 20px;

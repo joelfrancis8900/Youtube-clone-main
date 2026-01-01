@@ -1,4 +1,4 @@
-import "./Header1.css";
+import styles from "./Header1.module.css";
 import menuIcon from "../../icons/menu-svgrepo-com space removed.svg";
 import searchIcon from "../../icons/search-outline-svgrepo-com space removed.svg";
 import voiceIcon from "../../icons/voice input icon space removed.svg";
@@ -13,12 +13,12 @@ function Header1() {
     useSidebarToggle();
 
     return (
-        <header className="header">
+        <header className={styles.header}>
 
-            <div className="header-left">
+            <div className={styles['header-left']}>
 
 
-                <img src={menuIcon} id="sidebar-toggle" className="menu-button" alt="menu" />
+                <img src={menuIcon} id="sidebar-toggle" className={styles['menu-button']} alt="menu" />
 
                 <div>VidTube</div>
             </div>
@@ -28,33 +28,33 @@ function Header1() {
 
 
 
-            <div className="header-center">
+            <div className={styles['header-center']}>
 
-                <div className="icon-container">
+                <div className={styles['icon-container']}>
 
-                    <img src={searchIcon} className="search-icon" alt="search icon" />
+                    <img src={searchIcon} className={styles['search-icon']} alt="search icon" />
                 </div>
 
-                <div className="search-container">
-                    <input type="text" className="search-input" placeholder="Search" />
-                    <button className="search-button">
+                <div className={styles['search-container']}>
+                    <input type="text" className={styles['search-input']} placeholder="Search" />
+                    <button className={styles['search-button']}>
                         <img src={searchIcon} alt="search" />
                     </button>
 
 
                 </div>
 
-                <img src={voiceIcon} id="voice-icon" alt="voice" />
+                <img src={voiceIcon} className={styles['voice-icon']} alt="voice" />
             </div>
 
 
 
 
 
-            <div className="header-right">
-                <button className="header-create-button">
+            <div className={styles['header-right']}>
+                <button className={styles['header-create-button']}>
 
-                    <img src={plusIcon} id="plus-icon" alt="create" />
+                    <img src={plusIcon} className={styles['plus-icon']} alt="create" />
 
                     <div>Create</div>
                 </button>
@@ -62,11 +62,11 @@ function Header1() {
 
 
 
-                <img src={bellIcon} className="bell-icon" alt="notifications" />
+                <img src={bellIcon} className={styles['bell-icon']} alt="notifications" />
 
 
 
-                <div className="profile-placeholder"></div>
+                <div className={styles['profile-placeholder']}></div>
             </div>
 
 
