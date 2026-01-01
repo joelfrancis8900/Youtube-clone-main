@@ -4,6 +4,7 @@ import Header2 from "../components/Header2/Header2";
 import GridContainer from "../components/GridContainer/GridContainer";
 import './Home.css';
 
+
 export default function Home() {
     return (
         <div className="page" id="page">
@@ -12,7 +13,7 @@ export default function Home() {
             <Header2 />
             <GridContainer />
 
-        </div>
+        </div >
     );
 }
 

@@ -1,4 +1,4 @@
-import "./GridItem.css";
+import styles from "./GridItem.module.css";
 import dotIcon from "../../icons/dot-single-svgrepo-com.svg";
 
 
@@ -14,26 +14,26 @@ function GridItem({ title, thumbnail }: GridItemProps) {
         //     <h3>{title}</h3>
         // </div>
 
-        <div className="grid-item">
+        <div className={styles['grid-item']}>
             {/* thumbnail div is video loading placeholder */}
 
-            <div className="thumbnail">
+            <div className={styles.thumbnail}>
                 <img src={thumbnail} alt={title} />
             </div>
 
-            <div className="video-info-grid">
+            <div className={styles['video-info-grid']}>
 
-                <div className="GridItem-Channel-Photo"></div>
+                <div className={styles['GridItem-Channel-Photo']}></div>
 
-                <div className="Video-details">
-                    <h3 className="video-title">{title}</h3>
-                    <div className="video-channel">Video Channel</div>
-                    <div className="test">
-                        <div className="views">Video views</div>
+                <div className={styles['Video-details']}>
+                    <h3 className={styles['video-title']}>{title}</h3>
+                    <div className={styles['video-channel']}>Video Channel</div>
+                    <div className={styles.test}>
+                        <div className={styles.views}>Video views</div>
                         {/* <div className="view-date-divider"> | </div> */}
-                        <div className="dot-container"><img src={dotIcon} className="dot-icon" alt="dot icon" /></div>
+                        <div className={styles['dot-container']}><img src={dotIcon} className={styles['dot-icon']} alt="dot icon" /></div>
 
-                        <div className="date">14 minutes ago</div>
+                        <div className={styles.date}>14 minutes ago</div>
                     </div>
 
 

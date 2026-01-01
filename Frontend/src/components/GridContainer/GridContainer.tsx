@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import GridItem from "../GridItem/GridItem";
 import { allVideos } from "../../data/videos";
 import type { Video } from "../../data/videos";
-import "./GridContainer.css";
+import styles from "./GridContainer.module.css";
 
 function GridContainer() {
     // Show the first 12 videos initially
@@ -37,7 +37,7 @@ function GridContainer() {
     }, []);
 
     return (
-        <div className="grid-container">
+        <div className={styles['grid-container']}>
             {visibleVideos.map((video) => (
                 <GridItem key={video.id} title={video.title} thumbnail={video.thumbnail} />
             ))}
