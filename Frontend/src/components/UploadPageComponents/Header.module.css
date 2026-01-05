@@ -11,11 +11,16 @@
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    margin-right: 13px;
 }
 
 .Header {
     padding-left: 24px;
     display: flex;
+    height: 80px;
+    align-items: center;
+    border-top: 1px solid #E2E2E2;
+    border-bottom: 1px solid #E2E2E2;
 }
 
 
