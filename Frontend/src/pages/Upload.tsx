@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import Header1 from "../components/Header1/Header1";
+import Header from "../components/UploadPageComponents/Header"
 
 export default function Upload() {
     const [video, setVideo] = useState<File | null>(null);
@@ -37,8 +39,15 @@ export default function Upload() {
 
     return (
         <div>
-            <h1>Upload videos</h1>
-            <div>Post a video on your channel</div>
+
+
+
+
+            <Header1 />
+            <Header />
+
+
+
 
 
             <div>Video title:</div>

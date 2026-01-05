@@ -1,0 +1,26 @@
+.VideoCameraIcon {
+    height: 14px;
+    width: 22px;
+}
+
+.VideoCameraIconWrapper {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background-color: #DC2626;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.Header {
+    padding-left: 24px;
+    display: flex;
+}
+
+
+.UploadText {}
+
+.UploadVideosText {
+    display: block;
+}
