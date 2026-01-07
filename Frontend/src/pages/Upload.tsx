@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Header1 from "../components/Header1/Header1";
 import Header from "../components/UploadPageComponents/Header"
+import Main from "../components/UploadPageComponents/Main"
 
 export default function Upload() {
     const [video, setVideo] = useState<File | null>(null);
@@ -45,6 +46,7 @@ export default function Upload() {
 
             <Header1 />
             <Header />
+            <Main />
 
 
 
