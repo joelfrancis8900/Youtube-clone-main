@@ -3,9 +3,9 @@ dotenv.config();
 import express from "express";
 import multer from "multer";
 import cors from "cors";
-
-import cloudinary from "./lib/cloudinary";
 import { supabase } from "./lib/supabase";
+
+import crypto from "crypto";
 
 
 // import storageTestRoute from "./routes/storage-test";
@@ -30,41 +30,52 @@ app.get("/", (req, res) => {
 
 
 
-
-
-
-// Be able to delete uploads
 app.delete("/videos/:id", async (req, res) => {
     const { id } = req.params;
 
     if (!id) return res.status(400).json({ error: "Video ID is required" });
 
-    // 1. Get the video from Supabase to retrieve Cloudinary public_id
-    const { data: video, error: fetchError } = await supabase
-        .from("videos")
-        .select("*")
-        .eq("id", id)
-        .single();
-
-    if (fetchError || !video) return res.status(404).json({ error: "Video not found" });
-
     try {
-        // 2. Delete video from Cloudinary
-        await cloudinary.uploader.destroy(video.cloudinary_public_id, { resource_type: "video" });
+        // 1. Fetch the video row to get storage_path
+        const { data: video, error: fetchError } = await supabase
+            .from("videos")
+            .select("*")
+            .eq("id", id)
+            .single();
 
-        // 3. Delete video record from Supabase
+        if (fetchError || !video) {
+            return res.status(404).json({ error: "Video not found" });
+        }
+
+        // 2. Delete the file from Supabase Storage
+        const { error: storageError } = await supabase.storage
+            .from("videos")
+            .remove([video.storage_path]);
+
+        if (storageError) {
+            console.error("Supabase Storage deletion error:", storageError);
+            return res.status(500).json({ error: storageError.message });
+        }
+
+        // 3. Delete the video row from the database
         const { error: deleteError } = await supabase
             .from("videos")
             .delete()
             .eq("id", id);
 
-        if (deleteError) return res.status(500).json({ error: deleteError });
+        if (deleteError) {
+            console.error("Supabase DB deletion error:", deleteError);
+            return res.status(500).json({ error: deleteError.message });
+        }
 
+        // 4. Success
         res.json({ message: "Video deleted successfully" });
     } catch (err) {
-        res.status(500).json({ error: "Failed to delete video" });
+        console.error("Unexpected deletion error:", err);
+        res.status(500).json({ error: "Unexpected server error" });
     }
 });
+
 
 
 // Adding console.log of errors 
@@ -78,39 +89,54 @@ app.post("/upload", upload.single("video"), async (req: any, res) => {
 
         if (!file) return res.status(400).json({ error: "No file uploaded" });
 
-        const cloudStream = cloudinary.uploader.upload_stream(
-            {
-                resource_type: "video",
-                folder: "youtube-clone"
-            },
-            async (error, result) => {
-                if (error || !result) {
-                    console.error("Cloudinary error:", error);
-                    return res.status(500).json({ error });
-                }
 
-                console.log("Cloudinary result:", result);
+        // 1. Create a unique storage path
+        const filePath = `videos/${crypto.randomUUID()}-${file.originalname}`;
 
-                const { data, error: dbError } = await supabase
-                    .from("videos")
-                    .insert({
-                        title,
-                        video_url: result.secure_url,
-                        cloudinary_public_id: result.public_id
-                    })
-                    .select("*")
-                    .single();
+        // 2. Upload to Supabase Storage
+        const { error: uploadError } = await supabase.storage
+            .from("videos")
+            .upload(filePath, file.buffer, {
+                contentType: file.mimetype,
+            });
 
-                if (dbError) {
-                    console.error("Supabase error:", dbError);
-                    return res.status(500).json({ error: dbError });
-                }
+        if (uploadError) {
+            console.error("Supabase upload error:", uploadError);
+            return res.status(500).json({ error: uploadError.message });
+        }
 
-                res.json(data);
-            }
-        );
+        // 3. Get public URL
+        const { data } = supabase.storage
+            .from("videos")
+            .getPublicUrl(filePath);
 
-        cloudStream.end(file.buffer);
+        if (!data?.publicUrl) {
+            return res.status(500).json({ error: "Failed to get public URL" });
+        }
+
+        // 4. Save video record in database
+        const { data: video, error: dbError } = await supabase
+            .from("videos")
+            .insert({
+                title,
+                video_url: data.publicUrl,
+                storage_path: filePath,
+            })
+            .select("*")
+            .single();
+
+        if (dbError) {
+            console.error("Supabase DB error:", dbError);
+
+            // Cleanup orphaned file
+            await supabase.storage.from("videos").remove([filePath]);
+
+            return res.status(500).json({ error: dbError.message });
+        }
+
+        // 5. Respond with saved video
+        res.json(video);
+
     } catch (err) {
         console.error("Unexpected server error:", err);
         res.status(500).json({ error: "Unexpected server error" });

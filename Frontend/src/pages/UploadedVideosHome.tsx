@@ -7,7 +7,7 @@ type Video = {
     video_url: string;
 };
 
-export default function UploadVideosHome() {
+export default function UploadedVideosHome() {
 
     const handleDelete = async (id: string) => {
         try {
