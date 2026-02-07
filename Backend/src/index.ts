@@ -1,97 +1,26 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import multer from "multer";
 import cors from "cors";
-import dotenv from "dotenv";
-import { v2 as cloudinary } from "cloudinary";
-import { createClient } from "@supabase/supabase-js";
 
-dotenv.config();
+import cloudinary from "./lib/cloudinary";
+import { supabase } from "./lib/supabase";
+
+
+// import storageTestRoute from "./routes/storage-test";
+import { storageTestRoute } from "./routes/storage-test";
+
+
+
+
+
 
 const app = express();
 app.use(cors());
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
-    api_key: process.env.CLOUDINARY_API_KEY!,
-    api_secret: process.env.CLOUDINARY_API_SECRET!
-});
-
-const supabase = createClient(
-    // process.env.SUPABASE_URL!,
-    // process.env.SUPABASE_SERVICE_ROLE!
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_SECRET_KEY!
-);
-
-app.post("/upload", upload.single("video"), async (req: any, res) => {
-    const file = req.file;
-    const title = req.body.title ?? "Untitled Video";
-
-    if (!file) return res.status(400).json({ error: "No file uploaded" });
-
-    // const cloudStream = cloudinary.uploader.upload_stream(
-    //     {
-    //         resource_type: "video",
-    //         folder: "youtube-clone"
-    //     },
-    //     async (error, result) => {
-    //         if (error || !result) return res.status(500).json({ error });
-
-    //         const { data, error: dbError } = await supabase
-    //             .from("videos")
-    //             .insert({
-    //                 title,
-    //                 video_url: result.secure_url,
-    //                 cloudinary_public_id: result.public_id
-    //             })
-    //             .select("*")
-    //             .single();
-
-    //         if (dbError) return res.status(500).json({ error: dbError });
-
-    //         res.json(data);
-    //     }
-    // );
-
-    const cloudStream = cloudinary.uploader.upload_stream(
-        { resource_type: "video", folder: "youtube-clone" },
-        async (error, result) => {
-            try {
-                if (error || !result) {
-                    console.error("Cloudinary error:", error);
-                    return res.status(500).json({ error });
-                }
-
-                console.log("Cloudinary result:", result);
-
-                const { data, error: dbError } = await supabase
-                    .from("videos")
-                    .insert({
-                        title,
-                        video_url: result.secure_url,
-                        cloudinary_public_id: result.public_id
-                    })
-                    .select("*")
-                    .single();
-
-                if (dbError) {
-                    console.error("Supabase error:", dbError);
-                    return res.status(500).json({ error: dbError });
-                }
-
-                console.log("Inserted video in Supabase:", data);
-                res.json(data);
-            } catch (err) {
-                console.error("Unexpected error in upload callback:", err);
-                res.status(500).json({ error: err });
-            }
-        }
-    );
-
-    cloudStream.end(file.buffer);
-});
 
 app.listen(4000, () => console.log("Server running on port 4000"));
 
@@ -209,3 +138,5 @@ app.get("/videos", async (req, res) => {
         res.status(500).json({ error: err });
     }
 });
+
+app.use("/api", storageTestRoute);
