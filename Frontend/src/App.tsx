@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import WatchPage from "./pages/WatchPage/WatchPage";
-import TestPage from "./pages/TestPage"
 import Upload from "./pages/Upload";
-import UploadedVideosHome from "./pages/UploadedVideosHome";
+import UploadedVideosList from "./pages/UploadedVideosList";
 import './App.css'; // Optional: page-specific styles
 
 
@@ -13,9 +12,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/watch" element={<WatchPage />} />
-        <Route path="/TestPage" element={<TestPage />} />
         <Route path="/Upload" element={<Upload />} />
-        <Route path="/UploadedVideosHome" element={<UploadedVideosHome />} />
+        <Route path="/UploadedVideosHome" element={<UploadedVideosList />} />
       </Routes>
     </Router>
   );
