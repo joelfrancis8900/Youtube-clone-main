@@ -4,10 +4,10 @@ import dotIcon from "../../icons/dot-single-svgrepo-com.svg";
 
 interface GridItemProps {
     title: string;
-    thumbnail: string;
+    videoUrl: string;
 }
 
-function GridItem({ title, thumbnail }: GridItemProps) {
+function GridItem({ title, videoUrl }: GridItemProps) {
     return (
         // <div className="grid-item">
         //     <img src={thumbnail} alt={title} />
@@ -18,7 +18,11 @@ function GridItem({ title, thumbnail }: GridItemProps) {
             {/* thumbnail div is video loading placeholder */}
 
             <div className={styles.thumbnail}>
-                <img src={thumbnail} alt={title} />
+                {/* <img src={thumbnail} alt={title} /> */}
+                <video width="300" controls>
+                    <source src={videoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
             </div>
 
             <div className={styles['video-info-grid']}>

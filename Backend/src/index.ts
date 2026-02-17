@@ -91,7 +91,7 @@ app.post("/upload", upload.single("video"), async (req: any, res) => {
 
 
         // 1. Create a unique storage path
-        const filePath = `videos/${crypto.randomUUID()}-${file.originalname}`;
+        const filePath = `${crypto.randomUUID()}-${file.originalname}`;
 
         // 2. Upload to Supabase Storage
         const { error: uploadError } = await supabase.storage
@@ -151,7 +151,8 @@ app.get("/videos", async (req, res) => {
     try {
         const { data, error } = await supabase
             .from("videos")
-            .select("*"); // get all columns
+            .select("*") // get all columns
+            .order("created_at", { ascending: false });
 
         if (error) {
             console.error("Supabase error:", error);
