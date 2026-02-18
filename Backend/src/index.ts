@@ -83,6 +83,8 @@ app.post("/upload", upload.single("video"), async (req: any, res) => {
     try {
         const file = req.file;
         const title = req.body.title ?? "Untitled Video";
+        const thumbnailUrl = req.body.thumbnail_url;
+
 
         console.log("Received file:", file?.originalname);
         console.log("Received title:", title);
@@ -121,9 +123,11 @@ app.post("/upload", upload.single("video"), async (req: any, res) => {
                 title,
                 video_url: data.publicUrl,
                 storage_path: filePath,
+                thumbnail_url: thumbnailUrl
             })
             .select("*")
             .single();
+
 
         if (dbError) {
             console.error("Supabase DB error:", dbError);

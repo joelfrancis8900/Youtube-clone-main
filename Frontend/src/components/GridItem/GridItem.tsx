@@ -1,28 +1,46 @@
 import styles from "./GridItem.module.css";
 import dotIcon from "../../icons/dot-single-svgrepo-com.svg";
+import { useState, useRef } from "react";
 
 
 interface GridItemProps {
     title: string;
     videoUrl: string;
+    thumbnailUrl: string;
 }
 
-function GridItem({ title, videoUrl }: GridItemProps) {
-    return (
-        // <div className="grid-item">
-        //     <img src={thumbnail} alt={title} />
-        //     <h3>{title}</h3>
-        // </div>
+function GridItem({ title, videoUrl, thumbnailUrl }: GridItemProps) {
 
-        <div className={styles['grid-item']}>
+    const [isHovering, setIsHovering] = useState(false);
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+    return (
+
+
+        <div className={styles['grid-item']} onMouseEnter={() => {
+            setIsHovering(true);
+            videoRef.current?.play();
+        }}
+            onMouseLeave={() => {
+                setIsHovering(false);
+                videoRef.current?.pause();
+                if (videoRef.current) videoRef.current.currentTime = 0;
+            }}>
             {/* thumbnail div is video loading placeholder */}
 
-            <div className={styles.thumbnail}>
+            <div className={styles.thumbnail} >
                 {/* <img src={thumbnail} alt={title} /> */}
-                <video width="300" controls>
-                    <source src={videoUrl} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+                {!isHovering && <img src={thumbnailUrl} alt={title} />}
+                {isHovering && (
+                    <video width="300" controls ref={videoRef}
+                        src={videoUrl}
+                        muted
+                        loop
+                        preload="metadata"
+                        className={styles.hoverVideo}>
+                        {/* <source src={videoUrl} type="video/mp4" />
+                        Your browser does not support the video tag. */}
+                    </video>
+                )}
             </div>
 
             <div className={styles['video-info-grid']}>
@@ -50,6 +68,7 @@ function GridItem({ title, videoUrl }: GridItemProps) {
         </div>
     );
 }
+
 
 export default GridItem;
 

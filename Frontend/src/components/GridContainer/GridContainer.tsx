@@ -10,6 +10,7 @@ function GridContainer() {
         video_url: string;
         storage_path: string;
         created_at: string;
+        thumbnail_url: string;
     };
 
     const [videos, setVideos] = useState<Video[]>([]);
@@ -61,6 +62,7 @@ function GridContainer() {
                     key={video.id}
                     title={video.title}
                     videoUrl={video.video_url}
+                    thumbnailUrl={video.thumbnail_url}
                 />
             ))}
 
