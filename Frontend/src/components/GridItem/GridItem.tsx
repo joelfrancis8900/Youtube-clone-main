@@ -27,7 +27,17 @@ function GridItem({ title, videoUrl, thumbnailUrl }: GridItemProps) {
             }}>
             {/* thumbnail div is video loading placeholder */}
 
-            <div className={styles.thumbnail} >
+            <div className={styles.thumbnail} onMouseEnter={() => {
+                setIsHovering(true);
+                videoRef.current?.play();
+            }}
+                onMouseLeave={() => {
+                    setIsHovering(false);
+                    if (videoRef.current) {
+                        videoRef.current.pause();
+                        videoRef.current.currentTime = 0;
+                    }
+                }}>
                 {/* <img src={thumbnail} alt={title} /> */}
                 {!isHovering && <img src={thumbnailUrl} alt={title} />}
                 {isHovering && (
@@ -36,9 +46,10 @@ function GridItem({ title, videoUrl, thumbnailUrl }: GridItemProps) {
                         muted
                         loop
                         preload="metadata"
-                        className={styles.hoverVideo}>
-                        {/* <source src={videoUrl} type="video/mp4" />
-                        Your browser does not support the video tag. */}
+                        autoPlay
+                        className={styles.hoverVideo} controlsList="nodownload noplaybackrate"
+                        disablePictureInPicture>
+
                     </video>
                 )}
             </div>
